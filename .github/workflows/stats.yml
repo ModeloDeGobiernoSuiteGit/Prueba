@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    if: github.repository == 'mouredev/roadmap-retos-programacion' && github.ref == 'refs/heads/main'
+    if: github.repository == 'ModeloDeGobiernoSuiteGit/Prueba' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     permissions:
@@ -29,5 +29,5 @@ jobs:
         with:
           commit_message: Update stats
           commit_user_name: Brais Moure [GitHub Actions]
-          commit_user_email: mouredev@gmail.com
-          commit_author: mouredev <mouredev@gmail.com>
+          commit_user_email: diegoalejandrodiazramos@gmail.com
+          commit_author: mouredev <diegoalejandrodiazramos@gmail.com>
