@@ -1,28 +1,31 @@
 name: Stats
-
 on:
   schedule:
-    - cron: '0 0 * * *'
+    # Ejecutar una vez por semana, cada domingo a las 00:00 UTC
+    - cron: '0 0 * * 0'
+  # Permite ejecutar manualmente desde GitHub Actions
+  workflow_dispatch:
 
 jobs:
   build:
-    if: github.repository == 'ModeloDeGobiernoSuiteGit/Prueba' && github.ref == 'refs/heads/main'
+    # Solo ejecuta si está en el repo 'Prueba' en la rama main o si es ejecución manual
+    if: github.repository == 'ModeloDeGobiernoSuiteGit/Prueba' && github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
 
     permissions:
-      contents: write
+      contents: write  # Permite hacer commit y push
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4  # Clona el repositorio
 
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '3.11'  # Usa Python 3.11
 
       - name: Run script
-        run: python ./Roadmap/stats.py
+        run: python ./Roadmap/stats.py  # Ejecuta el script de estadísticas
 
       - name: Commit and Push changes
         uses: stefanzweifel/git-auto-commit-action@v5
@@ -30,4 +33,4 @@ jobs:
           commit_message: Update stats
           commit_user_name: Brais Moure [GitHub Actions]
           commit_user_email: diegoalejandrodiazramos@gmail.com
-          commit_author: mouredev <diegoalejandrodiazramos@gmail.com>
+          commit_author: Diego
